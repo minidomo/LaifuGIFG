@@ -1,20 +1,27 @@
 {
-    "name": "laifu-gif-generator",
-    "version": "1.0.0",
-    "description": "",
-    "main": "./src/frames.js",
-    "scripts": {
-        "start": "npm run clean && npm run frames && npm run gif:first && npm run extract && npm run border && npm run gif:second",
-        "frames": "node ./src/frames.js",
-        "clean": "node ./src/clean.js",
-        "gif:first": "node ./src/gifski.js 1",
-        "border": "node ./src/border.js",
-        "extract": "ffmpeg -i ./out/Animation1.gif ./out/resized/frame%04d.png",
-        "gif:second": "node ./src/gifski.js 2"
+    "dirs": {
+        "originalFrames": "C:/main/screen-to-gif-projects/god-of-high-school/1/frames"
     },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "jimp": "^0.16.1"
+    "stage": {
+        "frames": {
+            "jimpColors": []
+        },
+        "border": {
+            "jimpColors": []
+        }
+    },
+    "gifski": {
+        "1": {
+            "quality": 100,
+            "fps": 24,
+            "width": 225,
+            "height": 350
+        },
+        "2": {
+            "quality": 100,
+            "fps": 24,
+            "width": 225,
+            "height": 350
+        }
     }
 }
