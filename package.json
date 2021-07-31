@@ -6,16 +6,15 @@
   "scripts": {
     "start": "npm run clean && npm run frames && npm run gif:first && npm run extract && npm run border && npm run gif:second",
     "frames": "node ./src/frames.js",
-    "clean": "rm -rf ./out/*/*.png",
-    "gif:first": "gifski --quality 100 --fps 24 --width 221 --height 346 -o ./out/Animation1.gif ./out/frames/frame*.png",
+    "clean": "node ./src/clean.js",
+    "gif:first": "node ./src/gifski.js 1",
     "border": "node ./src/border.js",
     "extract": "ffmpeg -i ./out/Animation1.gif ./out/resized/frame%04d.png",
-    "gif:second": "gifski --quality 100 --fps 24 --width 225 --height 350 -o ./out/Animation2.gif ./out/bordered/frame*.png"
+    "gif:second": "node ./src/gifski.js 2"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gifuct-js": "^2.1.1",
     "jimp": "^0.16.1"
   }
 }

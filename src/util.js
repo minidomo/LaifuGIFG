@@ -25,18 +25,12 @@ const removePad = (str) => {
 
 /**
  * 
- * @param {number} length 
  * @param {string} msg 
  */
-const print = (length, msg) => {
-    const diff = length - msg.length;
-    let spaces = '';
-    if (length > 0) {
-        spaces = ' '.repeat(diff);
-    }
+const print = (msg) => {
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(msg + spaces);
+    process.stdout.write(msg);
 };
 
 module.exports = {
