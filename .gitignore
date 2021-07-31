@@ -1,3 +1,4 @@
 node_modules/
 out/**/*.gif
 out/**/*.png
+config.json
