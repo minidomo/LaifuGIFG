@@ -4,6 +4,8 @@
   "description": "",
   "main": "./src/frames.js",
   "scripts": {
+    "start:borderFix": "npm run clean && npm run borderFixMove && npm run border && npm run gif:second",
+    "borderFixMove": "node ./src/borderFixMove.js",
     "start": "npm run clean && npm run frames && npm run gif:first && npm run extract && npm run border && npm run gif:second",
     "frames": "node ./src/frames.js",
     "clean": "node ./src/clean.js",

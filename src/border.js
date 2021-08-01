@@ -24,11 +24,9 @@ const config = require('../config.json');
                         const newName = `frame${Util.pad(i, arr.length)}.png`;
                         newImage
                             .composite(border, 0, 0)
-                            .writeAsync(`./out/bordered/${newName}`)
-                            .then(() => {
-                                completed++;
-                                Util.print(`Frame ${completed} / ${arr.length}`);
-                            });
+                            .writeAsync(`./out/bordered/${newName}`);
+                        completed++;
+                        Util.print(`Frame ${completed} / ${arr.length}`);
                     })
                     .catch(console.error);
             });

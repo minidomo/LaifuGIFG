@@ -40,9 +40,14 @@ const config = require('../config.json');
                     })
                     .catch(console.error);
             } else {
-                fs.copyFileSync(oldPath, newPath);
-                completed++;
-                Util.print(`Frame ${completed} / ${oldNames.length}`);
+                fs.copyFile(oldPath, newPath, (err) => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    completed++;
+                    Util.print(`Frame ${completed} / ${oldNames.length}`);
+                });
             }
         });
     });
