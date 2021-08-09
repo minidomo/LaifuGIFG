@@ -6,17 +6,19 @@
   "scripts": {
     "start:borderFix": "npm run clean && npm run borderFixMove && npm run border && npm run gif:second",
     "borderFixMove": "node ./src/borderFixMove.js",
-    "start": "npm run clean && npm run frames && npm run gif:first && npm run extract && npm run border && npm run gif:second",
     "frames": "node ./src/frames.js",
     "clean": "node ./src/clean.js",
     "gif:first": "node ./src/gifski.js 1",
     "border": "node ./src/border.js",
     "extract": "ffmpeg -i ./out/Animation1.gif ./out/resized/frame%04d.png",
-    "gif:second": "node ./src/gifski.js 2"
+    "gif:second": "node ./src/gifski.js 2",
+    "ensureBorder": "node ./src/ensureBorder.js",
+    "start": "npm run clean && npm run frames && npm run gif:first && npm run ensureBorder"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "gifwrap": "^0.9.2",
     "jimp": "^0.16.1"
   }
 }
