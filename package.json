@@ -13,7 +13,8 @@
     "extract": "ffmpeg -i ./out/Animation1.gif ./out/resized/frame%04d.png",
     "gif:second": "node ./src/gifski.js 2",
     "ensureBorder": "node ./src/ensureBorder.js",
-    "start": "npm run clean && npm run frames && npm run gif:first && npm run ensureBorder"
+    "start": "npm run clean && npm run frames && npm run gif:first && npm run ensureBorder",
+    "start:fpsFix": "npm run gif:first && npm run ensureBorder"
   },
   "author": "",
   "license": "ISC",
