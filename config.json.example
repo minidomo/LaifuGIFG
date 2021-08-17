@@ -1,6 +1,7 @@
 {
     "dirs": {
-        "originalFrames": "C:/main/screen-to-gif-projects/god-of-high-school/1/frames"
+        "originalFrames": "C:/main/laifu-gifs/mushoku-tensei/eris/0/frames",
+        "originalGif": "C:/Users/domob/Downloads/.temp/3215-4.gif"
     },
     "stage": {
         "frames": {
@@ -19,7 +20,7 @@
         },
         "2": {
             "quality": 100,
-            "fps": 24,
+            "fps": 100,
             "width": 225,
             "height": 350
         }
