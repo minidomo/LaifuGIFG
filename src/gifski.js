@@ -14,7 +14,7 @@ if (id === '1') {
     dest = './out/bordered/frame*.png';
 }
 
-const command = `gifski --quality ${gifski[id].quality} --fps ${gifski[id].fps} --width ${gifski[id].width} --height ${gifski[id].height} -o ${src} ${dest}`;
+const command = `gifski --quality ${gifski[id].quality} --fps ${gifski[id].fps} --width ${gifski[id].width} --height ${gifski[id].height} -o "${src}" ${dest}`;
 exec(command, (err, stdout, stderr) => {
     if (err) {
         console.error(err);

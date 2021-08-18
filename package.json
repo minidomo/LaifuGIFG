@@ -14,7 +14,8 @@
     "gif:second": "node ./src/gifski.js 2",
     "ensureBorder": "node ./src/ensureBorder.js",
     "start": "npm run clean && npm run frames && npm run gif:first && npm run ensureBorder",
-    "start:fpsFix": "npm run gif:first && npm run ensureBorder"
+    "start:fpsFix": "npm run gif:first && npm run ensureBorder",
+    "massBorderFix": "node ./src/massBorderFix.js"
   },
   "author": "",
   "license": "ISC",

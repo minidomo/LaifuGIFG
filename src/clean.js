@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-const config = require('../config.json');
-
 /**
  * 
  * @param {string} dirName 
@@ -21,7 +19,7 @@ const deletePngs = (dirName) => {
                 }
                 if (stats.isDirectory()) {
                     deletePngs(newName);
-                } else if (filename.endsWith('.png')) {
+                } else if (filename.endsWith('.png') || filename.endsWith('.gif')) {
                     fs.unlink(newName, (err) => {
                         if (err) {
                             console.error(err);

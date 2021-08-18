@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 /**
  * 
  * @param {number} number 
@@ -33,8 +35,16 @@ const print = (msg) => {
     process.stdout.write(msg);
 };
 
+/**
+ * @param {Object} config 
+ */
+const saveConfig = (config) => {
+    fs.writeFileSync('./config.json', JSON.stringify(config, null, 4), { encoding: 'utf-8' });
+};
+
 module.exports = {
     pad,
     removePad,
     print,
+    saveConfig,
 };
