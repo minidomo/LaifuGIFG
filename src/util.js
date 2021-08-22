@@ -30,6 +30,7 @@ const removePad = (str) => {
  * @param {string} msg 
  */
 const print = (msg) => {
+    // these lines need to be commented out to work for massBorderFix.js
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     process.stdout.write(msg);
