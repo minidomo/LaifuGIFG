@@ -5,6 +5,7 @@ const Util = require('./util');
 const config = require('../config.json');
 
 (() => {
+    const TARGET_HEIGHT = 350;
     const FILE_REGEX = /Image \((\d+(?:\.\d+)?)\) (\d+)\.png/;
     const src = config.dirs.originalFrames;
     fs.readdir(src, (err, files) => {
@@ -33,7 +34,7 @@ const config = require('../config.json');
                     if (config.stage.frames.jimpColors.length > 0) {
                         img.color(config.stage.frames.jimpColors);
                     }
-                    const borderThickness = 3;
+                    const borderThickness = img.getHeight() / TARGET_HEIGHT < 1.5 ? 2 : 3;
                     const color = i % 2 ? 0xff0000ff : 0x00ff00ff;
                     for (let x = 0; x < img.getWidth(); x++) {
                         for (let j = 0; j < borderThickness; j++) {
