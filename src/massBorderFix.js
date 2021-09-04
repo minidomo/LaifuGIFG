@@ -9,7 +9,10 @@ fs.readdirSync(config.dirs.massBorderFixGifs, { encoding: 'utf-8', withFileTypes
     .map(f => f.name)
     .forEach(name => {
         config.dirs.originalGif = `${config.dirs.massBorderFixGifs}/${name}`;
+        config.script = 'massBorderFix';
         util.saveConfig(config);
         execSync('npm run start:borderFix');
+        config.script = '';
+        util.saveConfig(config);
         fs.copyFileSync('./out/Animation2.gif', `./out/borderFixes/${name}`);
     });

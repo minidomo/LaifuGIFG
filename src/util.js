@@ -1,3 +1,4 @@
+const config = require('../config.json');
 const fs = require('fs');
 
 /**
@@ -31,6 +32,9 @@ const removePad = (str) => {
  */
 const print = (msg) => {
     // these lines need to be commented out to work for massBorderFix.js
+    if (config.script === 'massBorderFix') {
+        return;
+    }
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     process.stdout.write(msg);
