@@ -1,6 +1,31 @@
 const config = require('../config.json');
 const fs = require('fs');
 
+const FILE_REGEX = /Image \((\d+(?:\.\d+)?)\) (\d+)\.png/;
+
+/**
+ * @typedef {Object} ParsedImageName
+ * @property {number} id
+ * @property {number} num
+ */
+
+/**
+ * 
+ * @param {string} name 
+ * @returns {?ParsedImageName}
+ */
+const parseImageFileName = (name) => {
+    if (FILE_REGEX.test(name)) {
+        const [, id1, num1] = FILE_REGEX.exec(name);
+        const obj = {
+            id: parseFloat(id1),
+            num: parseFloat(removePad(num1)),
+        };
+        return obj;
+    }
+    return null;
+};
+
 /**
  * 
  * @param {number} number 
@@ -48,6 +73,7 @@ const saveConfig = (config) => {
 };
 
 module.exports = {
+    parseImageFileName,
     pad,
     removePad,
     print,
