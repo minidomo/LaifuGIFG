@@ -1,35 +1,67 @@
-{
+{                                           // Note that it is important to understand the stages of the script and
+                                            // the order in which they occur to understand how to use some settings.
+                                            // See https://github.com/minidomo/laifu-gif-generator#stages
     "source": {
-        "framesPath": "C:/main/laifubot/gifs/demon-slayer/nezuko/0/frames0",
-        "gifPath": "C:/main/laifubot/gifs/_random/character.gif",
-        "gifsPath": "C:/main/laifubot/gifs/_random"
+        "framesPath": "path/to/images",     // The path to the directory containing the images. Used for the mode
+                                            //"new".
+        "gifPath": "path/to/character.gif", // The path to the gif. Used for the mode "fix".
+        "gifsPath": "path/to/gifs"          // The path to the directory containing the gifs. Used for the mode
+                                            //"mass-fix"
     },
-    "gifskiSettings": {
-        "fps": 24,
-        "quality": 100
+    "gifskiSettings": {                     // The settings that gifski should use when encoding the gif. Reference
+                                            // https://gif.ski/ for more information on the values of these properties.
+        "fps": 24,                          // The fps of the generated gif should be encoded at. Most often should be
+                                            // set to 24, but a gif may look better at a higher or lower fps.
+        "quality": 100                      // The quality of the generated gif should be encoded at. Most often should
+                                            // be set to 100. Consider reducing the number of frames if the size of the
+                                            // gif is too large.
     },
     "executablePath": {
-        "gifski": "C:/program_files/gifski/win/gifski.exe",
-        "ffmpeg": "C:/program_files/ffmpeg/bin/ffmpeg.exe"
+        "gifski": "path/to/gifski.exe",     // The path to the gifski executable
+        "ffmpeg": "path/to/ffmpeg.exe"      // The path to the FFmpeg executable
     },
-    "jimpColorManipulation": [],
-    "mode": "new",
+    "jimpColorManipulation": [],            // Color options to apply to the resulting gif using Jimp. Uses the same
+                                            // array formatting as seen here
+                                            // https://github.com/oliver-moran/jimp/tree/master/packages/jimp#advanced-usage
+    "mode": "new",                          // The indicator of whether a gif should be generated from images
+                                            // ("new"), an existing gif ("fix"), or multiple existing gifs ("mass-fix").
     "frames": {
-        "resizeByJimp": true,
-        "reuse": {
-            "base": false,
-            "resize": false,
-            "color": false,
-            "border": false
+        "resizePrior": true,                // Determines whether the frames of the resulting gif should be resized to
+                                            // 225x350 prior to applying color changes or resized when generating the
+                                            // gif (using gifski).
+        "startFrom": {                      // If generating a gif did not produce favorable results, and you would
+                                            // like to apply slight changes, such as changing the fps value, reusing
+                                            // frames from the previous run will take
+                                            // less time to generate another gif.
+            "base": false,                  // Starts at the base stage and reuses the frames located in
+                                            // out/temp*/base/. Note that out/temp*/base will always contain frames if
+                                            // the script ran successfully.
+            "resize": false,                // Starts at the resize stage and reuses the frames located in
+                                            // out/temp*/resize. Note that resizePrior will generate frames in
+                                            // out/temp*/resize.
+            "color": false,                 // Starts at the color stage and reuses the frames located in
+                                            // out/temp*/color.  Note that adding objects to jimpColorManipulation will
+                                            // generate frames in out/temp*/color.
+            "border": false                 // Starts at the border stage and reuses the frames located in
+                                            // out/temp*/border. Note that out/temp*/border will always contain frames
+                                            // if the script ran successfully.
         },
-        "exclude": {
-            "base": "",
-            "resize": "",
-            "color": "",
-            "border": ""
+        "exclude": {                        // Exclude frames to be used when generating a gif. Can specify the stage
+                                            // when to begin exclusion. Format: "<number|range> ...".
+                                            // Example: "1 5-10 3" means to exlude frames numbered
+                                            // 1, 5 to 10, and 3.
+            "base": "",                     // Exclude frames prior to the base stage. These frames will not appear in
+                                            // out/temp*/base.
+            "resize": "",                   // Exclude frames prior the resize stage. These frames will not appear in
+                                            // out/temp*/resize.
+            "color": "",                    // Exclude frames prior the color stage. These frames will not appear in
+                                            // out/temp*/color.
+            "border": ""                    // Exclude frames prior the border stage. These frames will not appear in
+                                            // out/temp*/border.
         }
     },
-    "fixSettings": {
-        "keepOriginalFps": true
+    "fixSettings": {                        // Settings only for modes: fix, mass-fix.
+        "keepOriginalFps": true             // Ignores the value for fps in gifskiSettings. Uses the fps value of the
+                                            // original gif.
     }
 }

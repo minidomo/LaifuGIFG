@@ -264,7 +264,7 @@ const createGif = async metadata => {
     let framesPath;
 
     const borderExcludeSet = createExcludeSet(config.frames.exclude.border);
-    if (config.frames.reuse.border) {
+    if (config.frames.startFrom.border) {
         framesPath = metadata.borderPath;
         frames = await readFrames({
             dirPath: framesPath,
@@ -272,7 +272,7 @@ const createGif = async metadata => {
         });
     } else {
         const colorExcludeSet = createExcludeSet(config.frames.exclude.color);
-        if (config.frames.reuse.color) {
+        if (config.frames.startFrom.color) {
             framesPath = metadata.colorPath;
             frames = await readFrames({
                 dirPath: framesPath,
@@ -280,7 +280,7 @@ const createGif = async metadata => {
             });
         } else {
             const resizeExcludeSet = createExcludeSet(config.frames.exclude.resize);
-            if (config.frames.reuse.resize) {
+            if (config.frames.startFrom.resize) {
                 framesPath = metadata.resizePath;
                 frames = await readFrames({
                     dirPath: framesPath,
@@ -289,7 +289,7 @@ const createGif = async metadata => {
             } else {
                 const baseExcludeSet = createExcludeSet(config.frames.exclude.base);
                 framesPath = metadata.basePath;
-                if (config.frames.reuse.base || metadata.originalGifPath) {
+                if (config.frames.startFrom.base || metadata.originalGifPath) {
                     frames = await readFrames({
                         dirPath: framesPath,
                         excludeSet: baseExcludeSet,
@@ -307,7 +307,7 @@ const createGif = async metadata => {
                         + `${util.time({ label: `${metadata.id}copyFrames`, type: 'get' })} second(s)`);
                 }
 
-                if (config.frames.resizeByJimp) {
+                if (config.frames.resizePrior) {
                     frames = frames.filter(f => !resizeExcludeSet.has(parseInt(f.id)));
                     framesPath = metadata.resizePath;
                     await util.clearDirectory(framesPath);
