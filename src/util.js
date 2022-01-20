@@ -1,81 +1,74 @@
-const config = require('../config.json');
+'use strict';
+
+const { promisify } = require('util');
 const fs = require('fs');
 
-const FILE_REGEX = /Image \((\d+(?:\.\d+)?)\) (\d+)\.png/;
+const unlinkAsync = promisify(fs.unlink);
 
-/**
- * @typedef {Object} ParsedImageName
- * @property {number} id
- * @property {number} num
- */
+const time = (() => {
+    /** @type {Map<string, [number, number]} */
+    const timeMap = new Map();
 
-/**
- * 
- * @param {string} name 
- * @returns {?ParsedImageName}
- */
-const parseImageFileName = (name) => {
-    if (FILE_REGEX.test(name)) {
-        const [, id1, num1] = FILE_REGEX.exec(name);
-        const obj = {
-            id: parseFloat(id1),
-            num: parseFloat(removePad(num1)),
-        };
-        return obj;
-    }
-    return null;
-};
+    /**
+     *
+     * @param {Object} data
+     * @param {string} data.label
+     * @param {'set'|'get'} data.type
+     * @returns {number|undefined}
+     */
+    const func = data => {
+        switch (data.type) {
+            case 'set': {
+                timeMap.set(data.label, process.hrtime());
+                return undefined;
+            }
+            case 'get': {
+                const oldTime = timeMap.get(data.label);
+                if (!oldTime) return undefined;
+                const curTime = process.hrtime(oldTime);
+                const seconds = (curTime[0] * 1e9 + curTime[1]) / 1e9;
+                return seconds;
+            }
+            default: {
+                throw new Error(`Provided type is invalid: ${data.type}`);
+            }
+        }
+    };
 
-/**
- * 
- * @param {number} number 
- * @param {number} arrLength
- * @returns {string}
- */
-const pad = (number, arrLength) => {
-    const curdigits = `${number}`.length;
-    const totaldigits = `${arrLength}`.length + 1;
-    return '0'.repeat(totaldigits - curdigits) + number;
-};
-
-/**
- * 
- * @param {string} str
- * @returns {string} 
- */
-const removePad = (str) => {
-    let index = 0;
-    while (index < str.length - 1 && str[index] === '0') {
-        index++;
-    }
-    return str.substr(index);
-};
-
-/**
- * 
- * @param {string} msg 
- */
-const print = (msg) => {
-    // these lines need to be commented out to work for massBorderFix.js
-    if (config.script === 'massBorderFix') {
-        return;
-    }
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(msg);
-};
-
-/**
- * @param {Object} config 
- */
-const saveConfig = (config) => {
-    fs.writeFileSync('./config.json', JSON.stringify(config, null, 4), { encoding: 'utf-8' });
-};
+    return func;
+})();
 
 module.exports = {
-    parseImageFileName,
-    pad,
-    removePad,
-    print,
-    saveConfig,
+    /**
+     *
+     * @param {number} length
+     * @param {number} num
+     * @returns {string}
+     */
+    padNumber(length, num) {
+        return String(num).padStart(length, '0');
+    },
+    /**
+     *
+     * @param {string} dirPath
+     * @returns {Promise<void>}
+     */
+    async clearDirectory(dirPath) {
+        const promises = [];
+        const files = fs.readdirSync(dirPath, { encoding: 'utf-8', withFileTypes: true });
+        files.forEach(file => promises.push(unlinkAsync(`${dirPath}/${file.name}`)));
+        await Promise.all(promises);
+    },
+    time,
+    /**
+     *
+     * @param {string} message
+     * @param {import('pino').pino.LogFn} loggerFunc
+     */
+    logAllLines(message, loggerFunc) {
+        message.split(/[\r\n]+/)
+            .map(str => str.trim())
+            .filter(str => str && str.length > 0)
+            .forEach(str => loggerFunc(str));
+    },
 };

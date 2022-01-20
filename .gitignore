@@ -5,3 +5,5 @@ config.json
 out/**/*.webp
 out/w
 src/test.js
+**/temp*
+**/*.log
