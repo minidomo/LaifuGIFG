@@ -426,7 +426,7 @@ const recreateGifs = dirPath => {
             break;
         }
         default: {
-            logger.error(`'mode' in config.json must be set to one of the following: new, fix, mass - fix`);
+            logger.error(`'mode' in config.json must be set to one of the following: new, fix, mass-fix`);
             break;
         }
     }
