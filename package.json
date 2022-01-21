@@ -1,5 +1,5 @@
 {
-  "name": "LaifuGIFG",
+  "name": "laifugifg",
   "version": "2.0.0",
   "description": "A script designed for the purpose of creating/adjusting gifs from series of images/existing gifs for the bot, LaifuBot, on Discord.",
   "main": "src/index.js",
