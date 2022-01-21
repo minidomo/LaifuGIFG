@@ -1,5 +1,5 @@
 {                                              // Note that it is important to understand the stages of the script and the order in which they occur to understand how
-// to use some settings. See https:            //github.com/minidomo/LaifuGIFG#stages
+                                               // to use some settings. See https://github.com/minidomo/LaifuGIFG#stages
     "mode": "new",                             // The indicator of whether a gif should be generated from images ("new"), an existing gif ("fix"), or multiple existing
                                                // gifs ("mass-fix").
     "sourcePath": "path/to/file/or/directory", // The path to the directory or file depending on the mode selected. Mode "new" should be the path to a direcory
