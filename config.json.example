@@ -1,6 +1,6 @@
 {                                           // Note that it is important to understand the stages of the script and
                                             // the order in which they occur to understand how to use some settings.
-                                            // See https://github.com/minidomo/laifu-gif-generator#stages
+                                            // See https://github.com/minidomo/LaifuGIFG#stages
     "source": {
         "framesPath": "path/to/images",     // The path to the directory containing the images. Used for the mode
                                             //"new".
