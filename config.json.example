@@ -3,7 +3,8 @@
     "mode": "new",                             // The indicator of whether a gif should be generated from images ("new"), an existing gif ("fix"), or multiple existing
                                                // gifs ("mass-fix").
     "sourcePath": "path/to/file/or/directory", // The path to the directory or file depending on the mode selected. Mode "new" should be the path to a direcory
-                                               // containing images, mode "fix" should be the path to a gif, and mode "mass-fix" should be the path to a directory containing gifs.
+                                               // containing images, mode "fix" should be the path to a gif, and mode "mass-fix" should be the path to a directory
+                                               // containing gifs.
     "gifskiSettings": {                        // The settings that gifski should use when encoding the gif. Reference https://gif.ski/ for more information on the
                                                // values of these properties.
         "fps": 24,                             // The fps of the generated gif should be encoded at. Most often should be set to 24, but a gif may look better at a
