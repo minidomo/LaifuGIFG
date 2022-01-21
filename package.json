@@ -8,7 +8,8 @@
     "start": "node src/index.js",
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix",
-    "align": "node src/align-comments.js"
+    "align": "node src/align-comments.js",
+    "align:undo": "node src/align-comments.js --undo"
   },
   "author": "",
   "license": "MIT",

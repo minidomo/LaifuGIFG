@@ -68,7 +68,7 @@ module.exports = {
     logAllLines(message, loggerFunc) {
         message.split(/[\r\n]+/)
             .map(str => str.trim())
-            .filter(str => str && str.length > 0)
+            .filter(str => str.length > 0)
             .forEach(str => loggerFunc(str));
     },
 };

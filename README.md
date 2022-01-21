@@ -3,7 +3,7 @@ A script designed for the purpose of creating/adjusting GIFs from series of imag
 
 ## Prerequisites
 - [Node.js](https://nodejs.org/en/)
-- [GIFski](https://GIF.ski/)
+- [gifski](https://GIF.ski/)
 - [FFmpeg](https://ffmpeg.org/download.html)
 
 ## Features

@@ -297,7 +297,7 @@ const createGif = async metadata => {
                 } else {
                     await util.clearDirectory(framesPath);
                     frames = await readFrames({
-                        dirPath: config.source.framesPath,
+                        dirPath: config.sourcePath,
                         excludeSet: baseExcludeSet,
                     });
                     logger.info(`[${metadata.id}] Copying frames`);
@@ -418,11 +418,11 @@ const recreateGifs = dirPath => {
             break;
         }
         case 'fix': {
-            recreateGif(new GifProcessMetadata({ id: '', originalGifPath: config.source.gifPath }));
+            recreateGif(new GifProcessMetadata({ id: '', originalGifPath: config.sourcePath }));
             break;
         }
         case 'mass-fix': {
-            recreateGifs(config.source.gifsPath);
+            recreateGifs(config.sourcePath);
             break;
         }
         default: {
