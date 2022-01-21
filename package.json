@@ -1,7 +1,7 @@
 {
   "name": "LaifuGIFG",
   "version": "2.0.0",
-  "description": "",
+  "description": "A script designed for the purpose of creating/adjusting gifs from series of images/existing gifs for the bot, LaifuBot, on Discord.",
   "main": "src/index.js",
   "scripts": {
     "clean": "trash out/*",
@@ -11,7 +11,7 @@
     "align": "node src/align-comments.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "gifwrap": "^0.9.2",
     "jimp": "^0.16.1",
