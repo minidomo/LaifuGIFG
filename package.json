@@ -8,19 +8,32 @@
     "start": "node src/index.js",
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix",
-    "align": "node src/align-comments.js",
-    "align:undo": "node src/align-comments.js --undo"
+    "align": "node scripts/align-comments.js",
+    "align:undo": "node scripts/align-comments.js --undo"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minidomo/LaifuGIFG.git"
+  },
+  "keywords": [
+    "discord",
+    "gif",
+    "laifubot"
+  ],
+  "author": "JB Ladera",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/minidomo/LaifuGIFG/issues"
+  },
+  "homepage": "https://github.com/minidomo/LaifuGIFG#readme",
   "dependencies": {
     "gifwrap": "^0.9.2",
     "jimp": "^0.16.1",
-    "pino": "^7.6.3",
-    "pino-pretty": "^7.3.0"
+    "pino": "^7.6.5",
+    "pino-pretty": "^7.5.1"
   },
   "devDependencies": {
-    "eslint": "^8.7.0",
+    "eslint": "^8.9.0",
     "trash": "^8.1.0"
   }
 }

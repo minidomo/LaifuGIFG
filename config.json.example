@@ -33,7 +33,7 @@
                                                // contain frames if the script ran successfully.
         },
         "exclude": {                           // Exclude frames to be used when generating a gif. Can specify the stage when to begin exclusion.
-                                               // Format: "<number|range> ...". Example: "1 5-10 3" means to exlude frames numbered 1, 5 to 10, and 3.
+                                               // Format: "<number|range> ...". Example: "1 5-10 3" means to exlude frames numbered 1, 5, 6, 7, 8, 9, 10, and 3.
             "base": "",                        // Exclude frames prior to the base stage. These frames will not appear in out/temp*/base.
             "resize": "",                      // Exclude frames prior the resize stage. These frames will not appear in out/temp*/resize.
             "color": "",                       // Exclude frames prior the color stage. These frames will not appear in out/temp*/color.
